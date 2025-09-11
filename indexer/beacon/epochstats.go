@@ -80,7 +80,7 @@ type EpochStatsPacked struct {
 // EpochStatsPackedValidator holds the packed values for an active validator.
 type EpochStatsPackedValidator struct {
 	ValidatorIndexOffset uint32 // offset to the previous index in the list (this is smaller than storing the full validator index)
-	EffectiveBalanceEth  uint32 // effective balance in full ETH
+	EffectiveBalanceEth  uint32 // effective balance in full YOUR_COIN
 }
 
 type EpochStatsPendingWithdrawals struct {

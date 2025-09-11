@@ -141,7 +141,7 @@ const ConsolidationReview = (props: IConsolidationReviewProps) => {
 
   if (requestFee > 100000000000000n) {
     feeFactor = 18;
-    feeUnit = "ETH";
+    feeUnit = "YOUR_COIN";
   } else if (requestFee > 100000n) {
     feeFactor = 9;
     feeUnit = "Gwei";

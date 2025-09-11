@@ -134,7 +134,7 @@ const SubmitWithdrawalsForm = (props: ISubmitWithdrawalsFormProps): React.ReactE
                   <b>Balance:</b>
                 </div>
                 <div className="col-9 col-lg-10">
-                  {toReadableAmount(validator.balance, 9, "ETH", 9)}
+                  {toReadableAmount(validator.balance, 9, "YOUR_COIN", 9)}
                 </div>
               </div>
             </div>
@@ -202,7 +202,7 @@ const SubmitWithdrawalsForm = (props: ISubmitWithdrawalsFormProps): React.ReactE
                       Validator Balance:
                     </div>
                     <div className="col-7 col-md-6 col-lg-4">
-                      {toReadableAmount(validator.balance, 9, "ETH", 9)}
+                      {toReadableAmount(validator.balance, 9, "YOUR_COIN", 9)}
                     </div>
                   </div>
                   <div className="row mt-1 withdrawal-details">
@@ -210,7 +210,7 @@ const SubmitWithdrawalsForm = (props: ISubmitWithdrawalsFormProps): React.ReactE
                       Withdrawable Balance:
                     </div>
                     <div className="col-6 col-md-6 col-lg-4">
-                      {toReadableAmount(validator.balance - props.minValidatorBalance, 9, "ETH", 9)}
+                      {toReadableAmount(validator.balance - props.minValidatorBalance, 9, "YOUR_COIN", 9)}
                     </div>
                   </div>
                   <div className="row mt-1 withdrawal-details">
@@ -228,7 +228,7 @@ const SubmitWithdrawalsForm = (props: ISubmitWithdrawalsFormProps): React.ReactE
                       />
                     </div>
                     <div className="col-1">
-                      ETH
+                      YOUR_COIN
                     </div>
                     <div className="col-4 col-md-3 d-lg-none"></div>
                     <div className="col-6 col-md-5 col-lg-3">
