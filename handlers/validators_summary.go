@@ -253,8 +253,8 @@ func buildValidatorsSummaryPageData() (*models.ValidatorsSummaryPageData, time.D
 	pageData.ExecutionClients = elClientListStrings
 	pageData.ConsensusClients = clClientListStrings
 	pageData.TotalValidators = activeValidators
-	pageData.TotalEffectiveETH = totalEffectiveBalance / 1000000000 // Convert to ETH as whole numbers
-	pageData.OverallHealthy = onlineEffectiveBalance / 1000000000   // Convert online EB to ETH
+	pageData.TotalEffectiveETH = totalEffectiveBalance / 1000000000 // Convert to YOUR_COIN as whole numbers
+	pageData.OverallHealthy = onlineEffectiveBalance / 1000000000   // Convert online EB to YOUR_COIN
 	pageData.ClientBreakdown = clientBreakdown
 	pageData.NetworkHealthScore = (float64(onlineEffectiveBalance) / float64(totalEffectiveBalance)) * 100
 
