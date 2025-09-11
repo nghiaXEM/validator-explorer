@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  dora:
+    image: dora
+    container_name: dora
+    command: -config=/config/dora-config.yaml
+    volumes:
+      - ./config.yaml:/config/dora-config.yaml:ro
+    network_mode: host
+    restart: unless-stopped
