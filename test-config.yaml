@@ -1,0 +1,146 @@
+logging:
+  #outputLevel: "debug"
+  #outputStderr: false
+
+  #filePath: "explorer.log"
+  #fileLevel: "warn"
+
+# Chain network configuration
+chain:
+  #name: "mainnet"
+  #genesisTimestamp: 1690484700
+  #genesisValidatorsRoot: "0xbf3c3d4683a5a4d286cd2a5ef7a5c1702f649eee82cdc7e87e05030102d12ccf"
+  configPath: "config.yaml"
+  #genesisTimestamp: 1688126460
+  #configPath: "config-devnet7.yaml"
+  displayName: "Ephemery Iteration 86"
+
+# HTTP Server configuration
+server:
+  host: "localhost" # Address to listen on
+  port: "8080" # Port to listen on
+
+
+frontend:
+  enabled: true # Enable or disable to web frontend
+  debug: false
+  minimize: false
+  siteName: "Dora the Explorer" # Name of the site, displayed in the title tag
+  siteSubtitle: "Ephemery"
+  siteDomain: "dora.ephemery.dev"
+  ethExplorerLink: "https://explorer.ephemery.dev/"
+  validatorNamesYaml: "validator_names.yaml"
+  #validatorNamesInventory: "https://config.4844-devnet-7.ethpandaops.io/api/v1/nodes/validator-ranges"
+  disablePageCache: false
+  showSensitivePeerInfos: true
+  showPeerDASInfos: true
+  showSubmitDeposit: true
+  showSubmitElRequests: true
+  
+  # DAS Guardian configuration
+  disableDasGuardianCheck: false     # Disable DAS Guardian completely (default: false - enabled)
+  enableDasGuardianMassScan: true    # Enable mass DAS Guardian scanning (default: false - disabled)
+
+  
+beaconapi:
+  # beacon node rpc endpoints
+  endpoints:
+    - name: "pk01"
+      url: "http://10.16.71.108:5052"
+      priority: 4
+      archive: true
+    - name: "lh"
+      url: "http://10.16.97.2:5052"
+      priority: 5
+    - name: "teku"
+      url: "http://10.16.97.3:5051"
+      priority: 5
+  
+  localCacheSize: 100 # 100MB
+  redisCacheAddr: ""
+  redisCachePrefix: ""
+
+executionapi:
+  # execution node rpc endpoints
+  endpoints:
+    - name: "pk01"
+      url: "http://10.16.71.108:8545"
+  
+  logBatchSize: 1000
+  depositDeployBlock: 0 # el block number from where to crawl the deposit contract (should be <=, but close to the deposit contract deployment block)
+  electraDeployBlock: 0 # el block number from where to crawl the electra system contracts (should be <=, but close to electra fork activation block)
+  genesisConfig: "" # path or URL to genesis.json file in geth format
+  # genesisConfig: "/path/to/genesis.json"
+  # genesisConfig: "https://example.com/genesis.json"
+
+indexer:
+  # max number of epochs to keep in memory
+  inMemoryEpochs: 3
+
+  # number of epochs to keep validator activity history for (high memory usage for large validator sets)
+  activityHistoryLength: 6
+
+  # disable synchronizing historic data
+  disableSynchronizer: false
+
+  # reset synchronization state to this epoch on startup - only use to resync database, comment out afterwards
+  #resyncFromEpoch: 0
+
+  # force re-synchronization of epochs that are already present in DB - only use to fix missing data after schema upgrades
+  #resyncForceUpdate: true
+
+  # number of seconds to pause the synchronization between each epoch (don't overload CL client)
+  syncEpochCooldown: 2
+
+  # maximum number of parallel beacon state requests (might cause high memory usage)
+  maxParallelValidatorSetRequests: 1
+
+mevIndexer:
+  # list of mev relays to crawl mev blocks from
+  relays:
+    - index: 0  # identifier for this relay in db (0-63)
+      name: Flashbots
+      url: https://boost-relay.flashbots.net/
+  refreshInterval: 10m
+
+# database configuration
+database:
+  engine: "sqlite" # sqlite / pgsql
+
+  # sqlite settings (only used if engine is set to sqlite)
+  sqlite:
+    file: "./tmp-database.sqlite"
+    #file: ":memory:"
+
+  # pgsql settings (only used if engine is set to pgsql)
+  pgsql:
+    host: "10.16.97.2"
+    port: 5432
+    user: "pk910"
+    password: "SBekcBFpRW9rZrVL" # internal dev DB, no worries about password leaking ;)
+    name: "pk910"
+  pgsqlWriter:
+    host: "10.16.97.2"
+    port: 5432
+    user: "pk910"
+    password: "SBekcBFpRW9rZrVL" # internal dev DB, no worries about password leaking ;)
+    name: "pk910"
+
+# separate block db for storing block bodies (no archive beacon node required)
+blockDb:
+  engine: "none" # pebble / s3 / none (disable block db)
+
+  # pebble settings (only used if engine is set to pebble)
+  pebble:
+    path: "./tmp-blockdb.peb"
+    cacheSize: 100 # 100MB
+
+  # s3 settings (only used if engine is set to s3)
+  s3:
+    bucket: "s3-bucket-name"
+    endpoint: "bucketid.r2.cloudflarestorage.com"
+    secure: true
+    region: ""
+    accessKey: "access-key"
+    secretKey: "secret-key"
+    path: "ephemery" # path prefix

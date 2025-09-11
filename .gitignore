@@ -1,0 +1,9 @@
+.vscode
+.DS_Store
+bin
+temp
+log-*
+tmp-*
+
+.hack/devnet/generated-**
+.hack/devnet/custom-**
