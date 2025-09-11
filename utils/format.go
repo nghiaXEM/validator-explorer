@@ -206,7 +206,7 @@ func formatAmount(amount *big.Int, unit string, digits int, maxPreCommaDigitsBef
 	// define display unit & digits used per unit max
 	displayUnit := " " + unit
 	var unitDigits int
-	if unit == "YOUR_COIN" || unit == "Ether" {
+	if unit == "YOUR_COIN" || unit == " YOUR_COIN_FULL" {
 		unitDigits = 18
 	} else if unit == "GWei" {
 		unitDigits = 9
